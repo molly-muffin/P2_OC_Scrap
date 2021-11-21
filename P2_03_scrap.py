@@ -148,22 +148,6 @@ def get_all_pages():
 		time.sleep(1)
 	return pages_htmlcode
 
-# Trouver les liens de chaque image de livre pour une page	
-def parse_img_url(articles):
-	url_img = {}
-	soup = BeautifulSoup(articles, 'html.parser')
-
-	img = soup.find("img")["src"].replace("../","")
-	img_url = str(url) + str(img)
-	url_img["img"] = img_url
-
-	h3 = soup.find("h3")
-	title = h3.find("a")["title"]
-	img_title = str(title)
-	url_img["title"] = img_title
-
-	return url_img	
-
 # Importer les images des livres dans un dossier 
 def import_img(url_img):
 	r = requests.get(url_img["img"], stream = True)
